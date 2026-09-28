@@ -71,3 +71,24 @@ class Datapackinator:
             os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "recipe"), exist_ok=True)
         with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", id + ".json"), "w") as file:
             file.write(json.dumps(structure, indent=4))
+
+    def stonecutting(self, ingredient, result, count, id):
+        ingredient_json = {}
+        if ingredient.find("#") == -1:
+            ingredient_json = {"item": ingredient}
+        else:
+            ingredient_json = {"tag": ingredient}
+        
+        structure = {
+            "type": "minecraft:stonecutting",
+            "ingredient": ingredient_json,
+            "result": {
+                "id": result,
+                "count": count
+            }
+        }
+
+        if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace, "recipe")):
+            os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "recipe"), exist_ok=True)
+        with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", id + ".json"), "w") as file:
+            file.write(json.dumps(structure, indent=4))
