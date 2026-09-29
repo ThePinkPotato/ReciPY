@@ -184,3 +184,12 @@ class Datapackinator:
             os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "recipe"), exist_ok=True)
         with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", id + ".json"), "w") as file:
             file.write(json.dumps(structure, indent=4))
+
+    def remove(self, id):
+        namespace = id[0 : id.find(":")]
+        recipe = id[id.find(":") + 1 : len(id)]
+        
+        if not os.path.exists(os.path.join(self.pack_path, "data", namespace, "recipe")):
+            os.makedirs(os.path.join(self.pack_path, "data", namespace, "recipe"), exist_ok=True)
+        with open(os.path.join(self.pack_path, "data", namespace, "recipe", recipe + ".json"), "w") as file:
+            file.write(json.dumps({}, indent=4))
