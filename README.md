@@ -65,3 +65,8 @@ ReciPY is far from feature complete, with plans to support recipe types past 1.2
 - `id` is the id of the recipe, what the file will be saved as (do not have duplicates)
 - `experience` is an optional argument, how much experience the player will gain from the recipe
 - `cookingtime` is an optional argumetn, how long the recipe will take, in ticks (default is 200, or 10 seconds)
+
+### Recipe Removal
+
+`remove(id)`
+- `id` is the full id of the recipe to be removed
