@@ -92,3 +92,95 @@ class Datapackinator:
             os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "recipe"), exist_ok=True)
         with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", id + ".json"), "w") as file:
             file.write(json.dumps(structure, indent=4))
+
+    def smelting(self, ingredient, result, id, experience = 0, cookingtime = 200):
+        ingredient_json = {}
+
+        if ingredient.find("#") == -1:
+            ingredient_json = {"item": ingredient}
+        else:
+            ingredient_json = {"tag": ingredient}
+
+        structure = {
+            "type": "minecraft:smelting",
+            "ingredient": ingredient_json,
+            "result": {
+                "id": result
+            },
+            "experience": experience,
+            "cookingtime": cookingtime
+        }
+
+        if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace, "recipe")):
+            os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "recipe"), exist_ok=True)
+        with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", id + ".json"), "w") as file:
+            file.write(json.dumps(structure, indent=4))
+
+    def blasting(self, ingredient, result, id, experience = 0, cookingtime = 200):
+        ingredient_json = {}
+
+        if ingredient.find("#") == -1:
+            ingredient_json = {"item": ingredient}
+        else:
+            ingredient_json = {"tag": ingredient}
+
+        structure = {
+            "type": "minecraft:blasting",
+            "ingredient": ingredient_json,
+            "result": {
+                "id": result
+            },
+            "experience": experience,
+            "cookingtime": cookingtime
+        }
+
+        if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace, "recipe")):
+            os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "recipe"), exist_ok=True)
+        with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", id + ".json"), "w") as file:
+            file.write(json.dumps(structure, indent=4))
+
+    def smoking(self, ingredient, result, id, experience = 0, cookingtime = 200):
+        ingredient_json = {}
+
+        if ingredient.find("#") == -1:
+            ingredient_json = {"item": ingredient}
+        else:
+            ingredient_json = {"tag": ingredient}
+
+        structure = {
+            "type": "minecraft:smoking",
+            "ingredient": ingredient_json,
+            "result": {
+                "id": result
+            },
+            "experience": experience,
+            "cookingtime": cookingtime
+        }
+
+        if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace, "recipe")):
+            os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "recipe"), exist_ok=True)
+        with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", id + ".json"), "w") as file:
+            file.write(json.dumps(structure, indent=4))
+
+    def campfire_cooking(self, ingredient, result, id, experience = 0, cookingtime = 200):
+        ingredient_json = {}
+
+        if ingredient.find("#") == -1:
+            ingredient_json = {"item": ingredient}
+        else:
+            ingredient_json = {"tag": ingredient}
+
+        structure = {
+            "type": "minecraft:campfire_cooking",
+            "ingredient": ingredient_json,
+            "result": {
+                "id": result
+            },
+            "experience": experience,
+            "cookingtime": cookingtime
+        }
+
+        if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace, "recipe")):
+            os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "recipe"), exist_ok=True)
+        with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", id + ".json"), "w") as file:
+            file.write(json.dumps(structure, indent=4))
