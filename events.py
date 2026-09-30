@@ -23,7 +23,7 @@ class Datapackinator:
         if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace)):
             os.makedirs(os.path.join(self.pack_path, "data", self.namespace), exist_ok=True)
 
-    def shapeless(self, ingredients, result, count, id):
+    def shapeless(self, ingredients, result, count, id, subfolder = ""):
         ingredients_list = []
 
         for ingredient in ingredients:
@@ -43,12 +43,12 @@ class Datapackinator:
             }
         }
 
-        if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace, "recipe")):
-            os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "recipe"), exist_ok=True)
-        with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", id + ".json"), "w") as file:
+        if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder)):
+            os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder), exist_ok=True)
+        with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder, id + ".json"), "w") as file:
             file.write(json.dumps(structure, indent=4))
 
-    def shaped(self, ingredients, pattern, result, count, id):
+    def shaped(self, ingredients, pattern, result, count, id, subfolder = ""):
         ingredients_dict = {}
 
         for ingredient in ingredients:
@@ -67,12 +67,12 @@ class Datapackinator:
             }
         }
 
-        if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace, "recipe")):
-            os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "recipe"), exist_ok=True)
-        with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", id + ".json"), "w") as file:
+        if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder)):
+            os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder), exist_ok=True)
+        with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder, id + ".json"), "w") as file:
             file.write(json.dumps(structure, indent=4))
 
-    def stonecutting(self, ingredient, result, count, id):
+    def stonecutting(self, ingredient, result, count, id, subfolder = ""):
         ingredient_json = {}
         if ingredient.find("#") == -1:
             ingredient_json = {"item": ingredient}
@@ -88,12 +88,12 @@ class Datapackinator:
             }
         }
 
-        if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace, "recipe")):
-            os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "recipe"), exist_ok=True)
-        with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", id + ".json"), "w") as file:
+        if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder)):
+            os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder), exist_ok=True)
+        with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder, id + ".json"), "w") as file:
             file.write(json.dumps(structure, indent=4))
 
-    def smelting(self, ingredient, result, id, experience = 0, cookingtime = 200):
+    def smelting(self, ingredient, result, id, experience = 0, cookingtime = 200, subfolder = ""):
         ingredient_json = {}
 
         if ingredient.find("#") == -1:
@@ -111,12 +111,12 @@ class Datapackinator:
             "cookingtime": cookingtime
         }
 
-        if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace, "recipe")):
-            os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "recipe"), exist_ok=True)
-        with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", id + ".json"), "w") as file:
+        if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder)):
+            os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder), exist_ok=True)
+        with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder, id + ".json"), "w") as file:
             file.write(json.dumps(structure, indent=4))
 
-    def blasting(self, ingredient, result, id, experience = 0, cookingtime = 200):
+    def blasting(self, ingredient, result, id, experience = 0, cookingtime = 200, subfolder = ""):
         ingredient_json = {}
 
         if ingredient.find("#") == -1:
@@ -134,12 +134,12 @@ class Datapackinator:
             "cookingtime": cookingtime
         }
 
-        if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace, "recipe")):
-            os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "recipe"), exist_ok=True)
-        with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", id + ".json"), "w") as file:
+        if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder)):
+            os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder), exist_ok=True)
+        with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder, id + ".json"), "w") as file:
             file.write(json.dumps(structure, indent=4))
 
-    def smoking(self, ingredient, result, id, experience = 0, cookingtime = 200):
+    def smoking(self, ingredient, result, id, experience = 0, cookingtime = 200, subfolder = ""):
         ingredient_json = {}
 
         if ingredient.find("#") == -1:
@@ -157,12 +157,12 @@ class Datapackinator:
             "cookingtime": cookingtime
         }
 
-        if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace, "recipe")):
-            os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "recipe"), exist_ok=True)
-        with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", id + ".json"), "w") as file:
+        if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder)):
+            os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder), exist_ok=True)
+        with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder, id + ".json"), "w") as file:
             file.write(json.dumps(structure, indent=4))
 
-    def campfire_cooking(self, ingredient, result, id, experience = 0, cookingtime = 200):
+    def campfire_cooking(self, ingredient, result, id, experience = 0, cookingtime = 200, subfolder = ""):
         ingredient_json = {}
 
         if ingredient.find("#") == -1:
@@ -180,16 +180,16 @@ class Datapackinator:
             "cookingtime": cookingtime
         }
 
-        if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace, "recipe")):
-            os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "recipe"), exist_ok=True)
-        with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", id + ".json"), "w") as file:
+        if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder)):
+            os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder), exist_ok=True)
+        with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder, id + ".json"), "w") as file:
             file.write(json.dumps(structure, indent=4))
 
-    def remove(self, id):
+    def remove(self, id, subfolder = ""):
         namespace = id[0 : id.find(":")]
         recipe = id[id.find(":") + 1 : len(id)]
         
-        if not os.path.exists(os.path.join(self.pack_path, "data", namespace, "recipe")):
-            os.makedirs(os.path.join(self.pack_path, "data", namespace, "recipe"), exist_ok=True)
-        with open(os.path.join(self.pack_path, "data", namespace, "recipe", recipe + ".json"), "w") as file:
+        if not os.path.exists(os.path.join(self.pack_path, "data", namespace, "recipe", subfolder)):
+            os.makedirs(os.path.join(self.pack_path, "data", namespace, "recipe", subfolder), exist_ok=True)
+        with open(os.path.join(self.pack_path, "data", namespace, "recipe", subfolder, recipe + ".json"), "w") as file:
             file.write(json.dumps({}, indent=4))
