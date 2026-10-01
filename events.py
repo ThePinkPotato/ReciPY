@@ -31,13 +31,17 @@ class Datapackinator:
     def shapeless(self, ingredients, result, count, id, subfolder = ""):
         ingredients_list = []
 
-        for ingredient in ingredients:
-            if ingredient.find("#") == -1:
-                ingredient_json = {"item": ingredient}
-                ingredients_list.append(ingredient_json)
+        if isinstance(ingredients, list):
+            for ingredient in ingredients:
+                if ingredient.find("#") == -1:
+                    ingredients_list.append({"item": ingredient})
+                else:
+                    ingredients_list.append({"tag": ingredient})
+        else:
+            if ingredients.find("#") == -1:
+                ingredients_list.append({"item": ingredients})
             else:
-                ingredient_json = {"tag": ingredient}
-                ingredients_list.append(ingredient_json)
+                ingredients_list.append({"tag": ingredients})
         
         structure = {
             "type": "minecraft:crafting_shapeless",
@@ -55,10 +59,15 @@ class Datapackinator:
 
     def shaped(self, ingredients, pattern, result, count, id, subfolder = ""):
         ingredients_dict = {}
-
-        for ingredient in ingredients:
+        if isinstance(ingredients, list):
+            for ingredient in ingredients:
+                if str(ingredient.keys()).find("#") == -1:
+                    ingredients_dict.setdefault(next(iter(ingredient.values())), {"item": next(iter(ingredient.keys()))})
+                else:
+                    ingredients_dict.setdefault(next(iter(ingredient.values())), {"tag": next(iter(ingredient.keys()))})
+        else:
             if str(ingredient.keys()).find("#") == -1:
-                ingredients_dict.setdefault(next(iter(ingredient.values())), {"item": next(iter(ingredient.keys()))})
+                    ingredients_dict.setdefault(next(iter(ingredient.values())), {"item": next(iter(ingredient.keys()))})
             else:
                 ingredients_dict.setdefault(next(iter(ingredient.values())), {"tag": next(iter(ingredient.keys()))})
 
@@ -77,12 +86,20 @@ class Datapackinator:
         with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder, id + ".json"), "w") as file:
             file.write(json.dumps(structure, indent=4))
 
-    def stonecutting(self, ingredient, result, count, id, subfolder = ""):
+    def stonecutting(self, ingredients, result, count, id, subfolder = ""):
         ingredient_json = {}
-        if ingredient.find("#") == -1:
-            ingredient_json = {"item": ingredient}
+
+        if isinstance(ingredients, list):
+            for ingredient in ingredients:
+                if ingredient.find("#") == -1:
+                    ingredient_json = {"item": ingredient}
+                else:
+                    ingredient_json = {"tag": ingredient}
         else:
-            ingredient_json = {"tag": ingredient}
+            if ingredients.find("#") == -1:
+                ingredient_json = {"item": ingredients}
+            else:
+                ingredient_json = {"tag": ingredients}
         
         structure = {
             "type": "minecraft:stonecutting",
@@ -98,13 +115,20 @@ class Datapackinator:
         with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder, id + ".json"), "w") as file:
             file.write(json.dumps(structure, indent=4))
 
-    def smelting(self, ingredient, result, id, experience = 0, cookingtime = 200, subfolder = ""):
+    def smelting(self, ingredients, result, id, experience = 0, cookingtime = 200, subfolder = ""):
         ingredient_json = {}
 
-        if ingredient.find("#") == -1:
-            ingredient_json = {"item": ingredient}
+        if isinstance(ingredients, list):
+            for ingredient in ingredients:
+                if ingredient.find("#") == -1:
+                    ingredient_json = {"item": ingredient}
+                else:
+                    ingredient_json = {"tag": ingredient}
         else:
-            ingredient_json = {"tag": ingredient}
+            if ingredients.find("#") == -1:
+                ingredient_json = {"item": ingredients}
+            else:
+                ingredient_json = {"tag": ingredients}
 
         structure = {
             "type": "minecraft:smelting",
@@ -121,13 +145,20 @@ class Datapackinator:
         with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder, id + ".json"), "w") as file:
             file.write(json.dumps(structure, indent=4))
 
-    def blasting(self, ingredient, result, id, experience = 0, cookingtime = 200, subfolder = ""):
+    def blasting(self, ingredients, result, id, experience = 0, cookingtime = 200, subfolder = ""):
         ingredient_json = {}
 
-        if ingredient.find("#") == -1:
-            ingredient_json = {"item": ingredient}
+        if isinstance(ingredients, list):
+            for ingredient in ingredients:
+                if ingredient.find("#") == -1:
+                    ingredient_json = {"item": ingredient}
+                else:
+                    ingredient_json = {"tag": ingredient}
         else:
-            ingredient_json = {"tag": ingredient}
+            if ingredients.find("#") == -1:
+                ingredient_json = {"item": ingredients}
+            else:
+                ingredient_json = {"tag": ingredients}
 
         structure = {
             "type": "minecraft:blasting",
@@ -144,13 +175,20 @@ class Datapackinator:
         with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder, id + ".json"), "w") as file:
             file.write(json.dumps(structure, indent=4))
 
-    def smoking(self, ingredient, result, id, experience = 0, cookingtime = 200, subfolder = ""):
+    def smoking(self, ingredients, result, id, experience = 0, cookingtime = 200, subfolder = ""):
         ingredient_json = {}
 
-        if ingredient.find("#") == -1:
-            ingredient_json = {"item": ingredient}
+        if isinstance(ingredients, list):
+            for ingredient in ingredients:
+                if ingredient.find("#") == -1:
+                    ingredient_json = {"item": ingredient}
+                else:
+                    ingredient_json = {"tag": ingredient}
         else:
-            ingredient_json = {"tag": ingredient}
+            if ingredients.find("#") == -1:
+                ingredient_json = {"item": ingredients}
+            else:
+                ingredient_json = {"tag": ingredients}
 
         structure = {
             "type": "minecraft:smoking",
@@ -167,13 +205,20 @@ class Datapackinator:
         with open(os.path.join(self.pack_path, "data", self.namespace, "recipe", subfolder, id + ".json"), "w") as file:
             file.write(json.dumps(structure, indent=4))
 
-    def campfire_cooking(self, ingredient, result, id, experience = 0, cookingtime = 200, subfolder = ""):
+    def campfire_cooking(self, ingredients, result, id, experience = 0, cookingtime = 200, subfolder = ""):
         ingredient_json = {}
 
-        if ingredient.find("#") == -1:
-            ingredient_json = {"item": ingredient}
+        if isinstance(ingredients, list):
+            for ingredient in ingredients:
+                if ingredient.find("#") == -1:
+                    ingredient_json = {"item": ingredient}
+                else:
+                    ingredient_json = {"tag": ingredient}
         else:
-            ingredient_json = {"tag": ingredient}
+            if ingredients.find("#") == -1:
+                ingredient_json = {"item": ingredients}
+            else:
+                ingredient_json = {"tag": ingredients}
 
         structure = {
             "type": "minecraft:campfire_cooking",
