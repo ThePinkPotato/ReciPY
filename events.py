@@ -1,11 +1,13 @@
 import os
 import json
+from shutil import rmtree
 
 class Datapackinator:
 
-    def __init__(self, name, description, namespace):
+    def __init__(self, name, description, namespace, delete = True):
         self.namespace = namespace
         self.pack_path = os.path.join(os.path.abspath(os.getcwd()), name)
+        self.delete = delete
         mcmeta = {
             "pack": {
                 "description": description,
@@ -17,8 +19,11 @@ class Datapackinator:
         }
         if not os.path.exists(self.pack_path):
             os.mkdir(self.pack_path)
-        with open(os.path.join(self.pack_path, "pack.mcmeta"), "w") as file:
-            file.write(json.dumps(mcmeta, indent = 4))
+        with open(os.path.join(self.pack_path, "pack.mcmeta"), "w") as pack:
+            pack.write(json.dumps(mcmeta, indent = 4))
+
+        if self.delete & os.path.exists(os.path.join(self.pack_path, "data")):
+            rmtree(os.path.join(self.pack_path, "data"))
 
         if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace)):
             os.makedirs(os.path.join(self.pack_path, "data", self.namespace), exist_ok=True)
@@ -193,3 +198,5 @@ class Datapackinator:
             os.makedirs(os.path.join(self.pack_path, "data", namespace, "recipe", subfolder), exist_ok=True)
         with open(os.path.join(self.pack_path, "data", namespace, "recipe", subfolder, recipe + ".json"), "w") as file:
             file.write(json.dumps({}, indent=4))
+
+    
