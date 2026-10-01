@@ -2,9 +2,9 @@ import os
 import json
 from shutil import rmtree
 
-class Datapackinator:
+class Recipes:
 
-    def __init__(self, name, description, namespace, delete = True):
+    def __init__(self, name, description, namespace, max_format, min_format = 48, delete = True):
         self.namespace = namespace
         self.pack_path = os.path.join(os.path.abspath(os.getcwd()), name)
         self.delete = delete
@@ -12,8 +12,8 @@ class Datapackinator:
             "pack": {
                 "description": description,
                 "supported_formats": [
-                    48,
-                    48
+                    max_format,
+                    min_format
                 ]
             }
         }
@@ -22,8 +22,8 @@ class Datapackinator:
         with open(os.path.join(self.pack_path, "pack.mcmeta"), "w") as pack:
             pack.write(json.dumps(mcmeta, indent = 4))
 
-        if self.delete & os.path.exists(os.path.join(self.pack_path, "data")):
-            rmtree(os.path.join(self.pack_path, "data"))
+        if self.delete & os.path.exists(os.path.join(self.pack_path, "data", self.namespace, "recipe")):
+            rmtree(os.path.join(self.pack_path, "data", self.namespace, "recipe"))
 
         if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace)):
             os.makedirs(os.path.join(self.pack_path, "data", self.namespace), exist_ok=True)
@@ -244,4 +244,82 @@ class Datapackinator:
         with open(os.path.join(self.pack_path, "data", namespace, "recipe", subfolder, recipe + ".json"), "w") as file:
             file.write(json.dumps({}, indent=4))
 
-    
+class Tags:
+
+    def __init__(self, name, description, namespace, max_format, min_format = 48, delete = True):
+        self.namespace = namespace
+        self.pack_path = os.path.join(os.path.abspath(os.getcwd()), name)
+        self.delete = delete
+        mcmeta = {
+            "pack": {
+                "description": description,
+                "supported_formats": [
+                    max_format,
+                    min_format
+                ]
+            }
+        }
+        if not os.path.exists(self.pack_path):
+            os.mkdir(self.pack_path)
+        with open(os.path.join(self.pack_path, "pack.mcmeta"), "w") as pack:
+            pack.write(json.dumps(mcmeta, indent = 4))
+
+        if self.delete & os.path.exists(os.path.join(self.pack_path, "data", self.namespace, "tags")):
+            rmtree(os.path.join(self.pack_path, "data", self.namespace, "tags"))
+
+        if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace)):
+            os.makedirs(os.path.join(self.pack_path, "data", self.namespace), exist_ok=True)
+
+    def create(self, tag_type, values, id, replace = False):
+        values_list = []
+
+        if isinstance(values, list):
+            for value in values:
+                if isinstance(value, dict):
+                    values_list.append({"id": next(iter(value.keys)), "required": next(iter(value.values))})
+                else:
+                    values_list.append(value)
+        else:
+            if isinstance(values, dict):
+                values_list.append({"id": next(iter(values.keys)), "required": next(iter(values.values))})
+            else:
+                values_list.append(values)
+                
+        structure = {
+            "replace": replace,
+            "values": [
+                values_list
+            ]
+        }
+
+        if not os.path.exists(os.path.join(self.pack_path, "data", self.namespace, "tags", tag_type)):
+            os.makedirs(os.path.join(self.pack_path, "data", self.namespace, "tags", tag_type), exist_ok=True)
+        with open(os.path.join(self.pack_path, "data", self.namespace, "tags", tag_type, id + ".json"), "w") as file:
+            file.write(json.dumps(structure, indent=4))
+
+    def modify(self, namespace, tag_type, values, id, replace = False):
+        values_list = []
+
+        if isinstance(values, list):
+            for value in values:
+                if isinstance(value, dict):
+                    values_list.append({"id": next(iter(value.keys)), "required": next(iter(value.values))})
+                else:
+                    values_list.append(value)
+        else:
+            if isinstance(values, dict):
+                values_list.append({"id": next(iter(values.keys)), "required": next(iter(values.values))})
+            else:
+                values_list.append(values)
+
+        structure = {
+            "replace": replace,
+            "values": [
+                values_list
+            ]
+        }
+
+        if not os.path.exists(os.path.join(self.pack_path, "data", namespace, "tags", tag_type)):
+            os.makedirs(os.path.join(self.pack_path, "data", namespace, "tags", tag_type), exist_ok=True)
+        with open(os.path.join(self.pack_path, "data", namespace, "tags", tag_type, id + ".json"), "w") as file:
+            file.write(json.dumps(structure, indent=4))
